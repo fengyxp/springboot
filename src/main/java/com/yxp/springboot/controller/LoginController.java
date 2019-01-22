@@ -40,6 +40,7 @@ public class LoginController {
 		if("yy".equals(account) && "1".equals(password)) {
 			mav.setViewName("admin");
             mav.addObject("beginTest","false");
+			System.out.println(1);
 			return mav;
 		}
 
