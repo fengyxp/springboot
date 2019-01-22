@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxp.springboot.dao.StudentScoreDao">
+    <insert id="insert" parameterType="StudentScore">
+        insert into student_score(student_id,score,second_score,total_score,result,threshold) values(#{studentId},#{score},#{secondScore},#{totalScore},#{result},#{threshold})
+    </insert>
+
+    <update id="update" parameterType="StudentScore">
+        update student_score set score=#{score},second_score=#{secondScore},totalScore=#{totalScore},result=#{result},threshold=#{threshold} where student_id=#{studentId}
+    </update>
+
+    <delete id="delete" parameterType="String">
+        delete from student_score where student_id=#{studentId}
+    </delete>
+
+    <!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路径 -->
+    <select id="selectOne" parameterType="String" resultType="StudentScore">
+        select student_id studentId,score score,second_score secondScore,total_score totalScore,result result,threshold threshold from student_score where student_id=#{studentId}
+    </select>
+    <select id="selectAll" resultType="StudentScore">
+        select student_id studentId,score score,second_score secondScore,total_score totalScore,result result,threshold threshold from student_score
+    </select>
+</mapper>

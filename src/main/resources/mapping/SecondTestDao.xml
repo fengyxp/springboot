@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxp.springboot.dao.SecondTestDao">
+    <insert id="insert" parameterType="Question">
+        insert into second_test(question_id,question,A,B,C,D,answer,analyse) values(#{questionId},#{question},#{A},#{B},#{C},#{D},#{answer},#{analyse})
+    </insert>
+
+    <update id="update" parameterType="Question">
+        update second_test set question=#{question},A=#{A},B=#{B},C=#{C},D=#{D},answer=#{answer} where question_id=#{questionId}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from second_test where question_id=#{questionId}
+    </delete>
+    <delete id="deleteAll">
+        delete from second_test
+    </delete>
+
+    <!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路径 -->
+    <select id="selectOne" parameterType="Integer" resultType="Question">
+        select question_id questionId,question question,A A,B B,C C,D D,answer answer,analyse analyse from second_test where question_id=#{questionId}
+    </select>
+    <select id="selectAll" resultType="Question">
+        select question_id questionId,question question,A A,B B,C C,D D,answer answer,analyse analyse from second_test
+    </select>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxp.springboot.dao.StudentAnswerDao">
+    <insert id="insert" parameterType="StudentAnswer">
+        insert into student_answer(question_id,student_id,select_answer,second_select,answer,analyse) values(#{questionId},#{studentId},#{selectAnswer},#{secondSelect},#{answer},#{analyse})
+    </insert>
+
+    <update id="update" parameterType="StudentAnswer">
+        update student_answer set second_select=#{secondSelect} where question_id=#{questionId} and student_id=#{studentId}
+    </update>
+
+    <delete id="deleteQ" parameterType="Integer">
+        delete from student_answer where question_id=#{questionId}
+    </delete>
+    <delete id="deleteS" parameterType="String">
+        delete from student_answer where student_id=#{studentId}
+    </delete>
+
+    <!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路径 -->
+    <select id="selectQ" parameterType="Integer" resultType="StudentAnswer">
+        select question_id questionId,student_id,select_answer,second_select,answer,analyse from student_answer where question_id=#{questionId}
+</select>
+    <select id="selectS" parameterType="String" resultType="StudentAnswer">
+        select question_id questionId, student_id studentId, selectAnswer selectAnswer, second_select secondSelect,answer answer,analyse analyse from student_answer where student_id=#{questionId}
+    </select>
+
+    <select id="selectAll" resultType="StudentAnswer">
+        select question_id questionId, student_id studentId, select_answer selectAnswer, second_select secondSelect,answer answer,analyse analyse from student_answer
+    </select>
+</mapper>
